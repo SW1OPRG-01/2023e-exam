@@ -27,6 +27,17 @@ int main(int argc, char** argv) {
     return -1;
   }
 
+  if(areal <= 0) {
+    std::cout << "areal <= 0" << std::endl;
+    return -2;
+
+  } 
+  
+  if(afstand <= 0) {
+    std::cout << "afstand <= 0" << std::endl;
+    return -3;
+  }
+
   std::cout << capacitance(epsilon, areal, afstand) << std::endl;
 
   return 0;
