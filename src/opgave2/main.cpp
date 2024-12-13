@@ -20,5 +20,8 @@ int main(int argc, char** argv) {
   int result;
   findMax(arr, sizeof(arr)/sizeof(int), &result);
   std::cout << result << std::endl;
+  
+  findMax(arr, 0, &result);
+  std::cout << result << std::endl;
   return 0;
 }
