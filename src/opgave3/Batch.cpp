@@ -1,4 +1,5 @@
 #include "Batch.h"
+#include <cmath>
 
 Batch::Batch(long id): id(id) { }
 
@@ -15,5 +16,10 @@ double Batch::averageForwardVoltage() const {
 }
 
 double Batch::standardDeviationForwardVoltage() const {
-  return 0;
+  double average = averageForwardVoltage();
+  double result = 0;
+  for(Led led : leds) {
+    result += pow(led.getForwardVoltage() - average, 2);
+  }
+  return sqrt(result/leds.size());
 }
