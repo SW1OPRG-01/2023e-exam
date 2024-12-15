@@ -4,7 +4,7 @@
 Batch::Batch(long id): id(id) { }
 
 void Batch::addLed(long id, double forwardVoltage, double current) {
-
+  leds.push_back(Led(id,forwardVoltage, current));
 }
 
 double Batch::averageForwardVoltage() const {
