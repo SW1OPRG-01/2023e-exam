@@ -6,7 +6,7 @@
 class Led {
   public:
     Led(long id, double forwardVoltage, double current);
-    std::string getId() const;
+    long getId() const;
     double getForwardVoltage() const;
     double getCurrent() const;
     std::string toString() const; 

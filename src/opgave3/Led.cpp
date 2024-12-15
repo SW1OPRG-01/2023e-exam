@@ -11,9 +11,9 @@ double Led::getCurrent() const {
 }
 
 std::string Led::toString() const {
-  return id + " " + std::to_string(forwardVoltage) + " " + std::to_string(current);
+  return std::to_string(id) + " " + std::to_string(forwardVoltage) + " " + std::to_string(current);
 }
 
-std::string Led::getId() const {
-  return std::to_string(id);
+long Led::getId() const {
+  return id;
 }
