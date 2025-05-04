@@ -1,22 +1,32 @@
 #include <iostream>
-#include <string>
-#include "Batch.h"
+#include <vector>
+#include "Wire.h"
+#include "Samling.h"
 
-int main(int argc, char **argv) {
-  Batch batch = Batch(1337);  
+double gennemsnitligModstand(std::vector<Wire> wires) {
   
-  Led led1 = Led(1, 2, 2);
-  Led led2 = Led(2, 4, 4);
-  Led led3 = Led(3, 2, 3);
-  Led led4 = Led(4, 5, 1);
+  if(wires.size() == 0) {
+    return 0;
+  }
+  
+  double sum = 0;
+  for(Wire wire: wires) {
+    sum +=wire.getModstand();
+  }
+  return sum / wires.size();
+}
 
-  batch.addLed(led1.getId(), led1.getForwardVoltage(), led1.getCurrent());
-  batch.addLed(led2.getId(), led2.getForwardVoltage(), led2.getCurrent());
-  batch.addLed(led3.getId(), led3.getForwardVoltage(), led3.getCurrent());
-  batch.addLed(led4.getId(), led4.getForwardVoltage(), led4.getCurrent());
+int main(int argc, char** argv) {
+  Wire gold = Wire(0.0244e-6, 12.0e-6, 1);
+  std::cout << gold.getModstand() << std::endl;
+  Wire steel = Wire(0.72e-6, 12e-6, 1);
+  std::cout << steel.getModstand() << std::endl;
 
-  std::cout << led4.toString() << std::endl;
-  std::cout << batch.averageForwardVoltage() << " " << batch.standardDeviationForwardVoltage() << std::endl;
+  Samling samling = Samling();
+  samling.addWire(0.0244e-6, 1, 12.0e-6);
+  samling.addWire(0.72e-6, 1, 12e-6);
+  std::cout << samling.gennemsnit() << std::endl;
+
 
   return 0;
 }
